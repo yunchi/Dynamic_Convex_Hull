@@ -58,11 +58,11 @@ public class TTreeTest {
 		}
 		List<Integer> ttList = tt.inorderElements();
 		assertEquals(orderedList, ttList);
-		Integer i1 = new Integer(5);
+		Integer i1 = Integer.valueOf(5);
 		assertEquals(i1, tt.search(5));
-		i1 = new Integer(7);
+		i1 = Integer.valueOf(7);
 		assertEquals(i1, tt.search(7));
-		i1 = new Integer(99);
+		i1 = Integer.valueOf(99);
 		assertEquals(i1, tt.search(99));
 		assertEquals(null, tt.search(6));
 		assertEquals(null, tt.search(200));

@@ -60,13 +60,6 @@ public class SubHullTest {
 		assertTrue(h4.isValidHull());
 	
 		
-		List<Coordinate2D> l1_2 = new ArrayList<Coordinate2D>(l1);
-		l1_2.addAll(l2);
-		SubHull h1_2 = new SubHull (l1_2);
-		List<Coordinate2D> l3_4 = new ArrayList<Coordinate2D>(l3);
-		l3_4.addAll(l4);
-		SubHull h3_4 = new SubHull (l3_4);
-		
 		/*
 		SubHull h = new SubHull(l3_4);
 		SubHull b = SubHull.bridge(h3, h4);
