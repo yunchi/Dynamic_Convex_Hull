@@ -1,8 +1,58 @@
-This is an implementation of the dynamic convex hull algorithm by Overmars and van Leeuwen as described in [1].
+# Dynamic Convex Hull
 
-This implementation is used in our paper on distribution-based query scheduling [2].
+This project implements the dynamic convex hull algorithm by Overmars and van Leeuwen [1]. It maintains the convex hull of a set of points in the plane under insertions and deletions of points.
 
-For the implementation, a special data structure named concatenable queue [3] is needed. We implemented the concatenable queue by using a 2-3 tree [3], and we implemented the 2-3 tree by extending the recently proposed leftleaning-red-black-tree (LLRB) [4]. Our extensions to LLRB include (1) storing data only at leaf nodes and (2) adding pointers to each leaf node, to point to the left and right neighbors of the node.
+This implementation was used in the paper on distribution-based query scheduling [2].
+
+## Algorithm
+
+The implementation uses a **concatenable queue** [3] data structure.
+-   The concatenable queue is implemented using a **2-3 tree** [3].
+-   The 2-3 tree implementation extends the **Left-Leaning Red-Black (LLRB) tree** [4].
+-   Extensions to LLRB include:
+    1.  Storing data only at leaf nodes.
+    2.  Adding pointers to each leaf node to point to its left and right neighbors.
+
+## Prerequisites
+
+-   Java Development Kit (JDK)
+-   Eclipse IDE (optional, but the project is structured as an Eclipse project)
+
+## Project Structure
+
+The source code is located in `src/main/java`.
+The main package is `com.github.yunchi.dynamic_convex_hull`.
+
+-   `ConvexHull.java`: The main class representing the dynamic convex hull.
+-   `Coordinate2D.java`: Represents a point in 2D space.
+-   `TTree.java`: Implementation of the 2-3 tree (LLRB based).
+-   `SubHull.java`: Represents a part of the convex hull.
+
+## Usage
+
+### Initialization
+
+```java
+import com.github.yunchi.dynamic_convex_hull.ConvexHull;
+import com.github.yunchi.dynamic_convex_hull.Coordinate2D;
+
+ConvexHull hull = new ConvexHull();
+```
+
+### Inserting Points
+
+```java
+Coordinate2D point = new Coordinate2D(1.5, 2.5);
+hull.insert(point);
+```
+
+### Deleting Points
+
+```java
+hull.delete(point);
+```
+
+## References
 
 [1] M. H. Overmars and J. van Leeuwen. Maintenance of configurations in the plane. J. Comput. Syst. Sci., 23(2):166–204, 1981.
 
