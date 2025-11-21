@@ -142,10 +142,10 @@ public class SubHull extends CQueue<Coordinate2D> {
 		Node<Coordinate2D> itr = root;
 		while (itr != null) {
 			int i = determineCase(itr.lMax, t);
-			if (i*t < 0) {//note: t positive angle vs. negative angle, the behaviors are different
+			if (i < 0) {
 				itr = itr.right;
 			}
-			else if (i*t > 0) {
+			else if (i > 0) {
 				itr = itr.left;
 			}
 			else {

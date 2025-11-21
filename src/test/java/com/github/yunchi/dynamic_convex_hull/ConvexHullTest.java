@@ -54,9 +54,48 @@ public class ConvexHullTest {
 		}
 	}
 
-	//@Test
+	@Test
 	public void testDeleteAtCNodeCoordinate2D() {
-		fail("Not yet implemented");
+		List<Coordinate2D> l = new ArrayList<Coordinate2D>();
+		Coordinate2D d;
+		for (int i = 0; i < 100; i++) {
+			d = new Coordinate2D(0.0 + rand.nextDouble(), 1.0*rand.nextDouble());
+			l.add(d);
+			con.insert(d);
+		}
+		assertTrue(con.root.hull.isValidHull());
+		
+		// Delete half of the points
+		for (int i = 0; i < 50; i++) {
+			int index = rand.nextInt(l.size());
+			Coordinate2D toDelete = l.get(index);
+			l.remove(index);
+			con.delete(toDelete);
+			
+			if (con.root != null) {
+				assertTrue(con.root.hull.isValidHull());
+				SubHull baseline = new SubHull(l);
+				assertTrue(SubHull.sameHull(baseline, con.root.hull));
+			} else {
+				assertTrue(l.isEmpty());
+			}
+		}
+		
+		// Delete remaining points
+		while (!l.isEmpty()) {
+			Coordinate2D toDelete = l.get(0);
+			l.remove(0);
+			con.delete(toDelete);
+			
+			if (!l.isEmpty()) {
+				assertTrue(con.root.hull.isValidHull());
+				SubHull baseline = new SubHull(l);
+				assertTrue(SubHull.sameHull(baseline, con.root.hull));
+			}
+		}
+		
+		assertNull(con.root);
+		assertEquals(0, con.getSize());
 	}
 
 }
